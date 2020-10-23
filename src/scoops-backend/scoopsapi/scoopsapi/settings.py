@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'graphene_django',
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
     "graphql_auth",
-    'django_filters'
+    'django_filters',
+    'establishments'
 ]
 
 MIDDLEWARE = [
@@ -74,6 +75,7 @@ GRAPHQL_JWT = {
         "graphql_auth.mutations.Register",
         "graphql_auth.mutations.VerifyAccount",
         "graphql_auth.mutations.ObtainJSONWebToken",
+        "graphql_auth.mutations.RefreshToken",
     ],
 }
 
