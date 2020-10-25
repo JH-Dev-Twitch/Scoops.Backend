@@ -1,18 +1,19 @@
-import graphene
-from establishments.schema import EstablishmentQuerySchema
+from graphene import ObjectType, Schema
+from amenities.schema import AmenityQueries, AmenityMutations
+from establishments.schema import EstablishmentSchema
 from graphql_auth.schema import UserQuery, MeQuery
 from graphql_auth import mutations
 
-class AuthMutation(graphene.ObjectType):
+class AuthMutation(ObjectType):
    register = mutations.Register.Field()
    verify_account = mutations.VerifyAccount.Field()
-   token_auth = mutations.ObtainJSONWebToken.Field(),
+   token_auth = mutations.ObtainJSONWebToken.Field()
    refresh_token = mutations.RefreshToken.Field()
 
-class Query(EstablishmentQuerySchema, graphene.ObjectType):
-    pass
-
-class Mutation(AuthMutation, graphene.ObjectType):
+class Query(AmenityQueries, EstablishmentSchema):
    pass
 
-schema = graphene.Schema(query=Query, mutation=Mutation)
+class Mutation(AmenityMutations,AuthMutation):
+   pass
+
+schema = Schema(query=Query, mutation=Mutation)

@@ -1,8 +1,11 @@
-from django.db import models
+from djongo import models
 
 # Create your models here.
-class EstablishmentType(models.Model):
-    name = models.CharField(max_length=200)
 
+class EstablishmentTypes(models.Model):
+    _id = models.ObjectIdField()
+    name = models.CharField(max_length=120)
+    
     class Meta:
-        db_table = "establishments_types"
+        db_table = "establishment_types"
+

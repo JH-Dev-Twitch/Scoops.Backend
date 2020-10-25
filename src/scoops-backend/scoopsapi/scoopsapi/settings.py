@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
     "graphql_auth",
     'django_filters',
-    'establishments'
+    'establishments',
+    'amenities'
+    
+    
 ]
 
 MIDDLEWARE = [
@@ -52,6 +55,8 @@ MIDDLEWARE = [
 
 ]
 
+
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 GRAPHENE = {
@@ -62,6 +67,7 @@ GRAPHENE = {
 }
 
 AUTHENTICATION_BACKENDS = [
+    'graphql_jwt.backends.JSONWebTokenBackend',
     'django.contrib.auth.backends.ModelBackend',
     "graphql_auth.backends.GraphQLAuthBackend",
 ]
@@ -106,7 +112,7 @@ WSGI_APPLICATION = 'scoopsapi.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': env('DATABSE_NAME'),
+        'NAME': env('DATABASE_NAME'),
         'CLIENT': {
            'host': env('DATABASE_HOST'),
         }
